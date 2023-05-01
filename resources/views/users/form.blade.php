@@ -50,6 +50,11 @@
                             </div>
                         @endif
 
+                        <label class="control-label">Email (to send the information)</label>
+                        <div class="mb-3">
+                            <input type="email" class="form-control" name="email" value="" id="validationCustom01"  required>
+                        </div>
+
                     </div>
                     <div class="d-flex flex-wrap gap-2 pt-3">
                         <button type="submit" class="btn btn-primary waves-effect waves-light">Submit</button>

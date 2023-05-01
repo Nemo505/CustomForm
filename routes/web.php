@@ -13,7 +13,9 @@ use App\Http\Controllers\UserController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
+Route::get('mail/test',function(){
+    return view('email.index');
+});
 
 Route::controller(UserController::class)->group(function () {
     Route::get('/', 'index')->name('users');

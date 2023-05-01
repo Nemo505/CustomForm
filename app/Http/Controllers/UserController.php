@@ -40,17 +40,40 @@ class UserController extends Controller
     public function storeForm( Request $request )
     {
         $user = User::findOrFail($request->id);
-       
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|string|email|unique:users',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->route('users')->with(['error' => 'The email is already taken']);
+        }
         if ($user) {
             $user->update([
                 'name' => $request->name ?? null,
                 'phone' => $request->phone ?? null,
                 'date_of_birth' =>   date("Y-m-d", strtotime($request->dob)) ?? null,
-                'gender' => $request->gender ?? null,
+                'gender' => $request->gender ?? null,               
+                'email' => $request->email,
             ]);
-            return redirect()->route('users')->with(['success' => 'Form submitted successfully']);
+
+            if ($this->informEmail($request->email, $user)) {
+                return redirect()->route('users')->with(['success' => 'Success!, I have sent you the email']);
+            } else {
+                return redirect()->route('users')->with(['error' => 'Failed to send the mail']);
+            }
+
         }else{
             return redirect()->route('users')->with(['error' => 'User Data not found']);
         }
+    }
+
+
+    private function informEmail($email, $user){
+
+        $user = User::where('email', $email)->first();
+               
+        \Mail::to($email)->send(new \App\Mail\sendMail($user));
+        
+        return true;
     }
 }
