@@ -16,9 +16,16 @@ use App\Http\Controllers\Api\UserApiController;
 |
 */
 
-Route::post('/auth/login', [AuthApiController::class, 'login']);
-Route::post('/auth/register', [AuthApiController::class, 'register']);
+Route::post('/login', [AuthApiController::class, 'login']);
+Route::post('/register', [AuthApiController::class, 'register']);
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware(['auth:sanctum'])->group(function () {
+
+    Route::post('/logout', [AuthApiController::class, 'logout']);
+
+    Route::controller(UserApiController::class)->group(function () {
+        Route::post('/submitting-form', 'store')->name('submitting-data');
+        Route::post('/complete-form', 'storeForm')->name('complete-data');
+    });
 });
+
