@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,13 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::controller(AgentController::class)->group(function () {
-    Route::get('/list', 'index')->name('agents');
-    Route::get('/create', 'agentCreate')->name('agents-create');
-    Route::post('/store', 'create')->name('agents-store');
-    Route::get('/detail', 'agentDetail')->name('detail');
-    Route::get('/edit', 'detail')->name('agents-detail');
-    Route::post('/update', 'update')->name('agents-update');
-    Route::post('/delete', 'delete')->name('agents-delete');
-    Route::post('/change-status', 'changeStatus')->name('agents-changeStatus');
+Route::controller(UserController::class)->group(function () {
+    Route::get('/', 'index')->name('users');
+    Route::post('/form', 'store')->name('store-data');
 });
