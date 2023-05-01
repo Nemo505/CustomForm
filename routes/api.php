@@ -15,17 +15,21 @@ use App\Http\Controllers\Api\UserApiController;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
+Route::group(
+    ['prefix' => 'v1',],
+    function () {
 
-Route::post('/login', [AuthApiController::class, 'login']);
-Route::post('/register', [AuthApiController::class, 'register']);
+    Route::post('/login', [AuthApiController::class, 'login']);
+    Route::post('/register', [AuthApiController::class, 'register']);
 
-Route::middleware(['auth:sanctum'])->group(function () {
+    Route::middleware(['auth:sanctum'])->group(function () {
 
-    Route::post('/logout', [AuthApiController::class, 'logout']);
+        Route::post('/logout', [AuthApiController::class, 'logout']);
 
-    Route::controller(UserApiController::class)->group(function () {
-        Route::post('/submitting-form', 'store')->name('submitting-data');
-        Route::post('/complete-form', 'storeForm')->name('complete-data');
+        Route::controller(UserApiController::class)->group(function () {
+            Route::post('/submitting-form', 'store')->name('submitting-data');
+            Route::post('/complete-form', 'storeForm')->name('complete-data');
+        });
     });
 });
 
