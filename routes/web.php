@@ -17,5 +17,6 @@ use App\Http\Controllers\UserController;
 
 Route::controller(UserController::class)->group(function () {
     Route::get('/', 'index')->name('users');
-    Route::post('/form', 'store')->name('store-data');
+    Route::post('/submitting-form', 'store')->name('pending-data');
+    Route::post('/complete-form', 'storeForm')->name('submitting-data');
 });

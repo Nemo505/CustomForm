@@ -9,7 +9,7 @@
     <meta content="Xsphere" name="author" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- App favicon -->
-    <link rel="shortcut icon" href="{{ URL::asset('assets/images/fav_icon.png') }}">
+    <link rel="shortcut icon" href="{{ URL::asset('assets/images/') }}">
     @include('layouts.head-css')
     <style>
         /* Chrome, Safari, Edge, Opera */
@@ -45,7 +45,7 @@
     <!-- ============================================================== -->
     <!-- Start right Content here -->
     <!-- ============================================================== -->
-    <div class="main-content">
+    <div class="">
         <div class="page-content">
             <div class="container-fluid">
                 <div id="append_alert"></div>

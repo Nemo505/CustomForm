@@ -15,7 +15,7 @@
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque soluta, perspiciatis consequuntur voluptatem quaerat quasi. Omnis asperiores und</p>
                 </div>
 
-                <form action="" method="post" >
+                <form action="{{ route('pending-data') }}" method="post" >
                     @csrf
 
                     <input class="form-check-input font-size-16" type="checkbox" id="checkAll" name="">
@@ -24,7 +24,7 @@
                     <div class="row mx-auto my-3">
                         <div class="col-md-3 mb-4">
                             <div class="form-check ">
-                                <input class="form-check-input font-size-16" checked type="checkbox" id="checkAll" name="">
+                                <input class="form-check-input font-size-16" checked type="checkbox" id="checkAll" name="users[]" value="name">
                                 <label class="font-size-8" for="checkAll">Name</label>
                                 
                             </div>
@@ -32,14 +32,14 @@
 
                         <div class="col-md-3 mb-4">
                             <div class="form-check ">
-                                <input class="form-check-input font-size-16" checked type="checkbox" id="checkAll" name="">
+                                <input class="form-check-input font-size-16" checked type="checkbox" id="checkAll" name="users[]" value="phone">
                                 <label class="font-size-8" for="checkAll">Phone</label>
                                 
                             </div>
                         </div>
                         <div class="col-md-3 mb-4">
                             <div class="form-check ">
-                                <input class="form-check-input font-size-16" checked type="checkbox" id="checkAll" name="">
+                                <input class="form-check-input font-size-16" checked type="checkbox" id="checkAll" name="users[]" value="dob">
                                 <label class="font-size-8" for="checkAll">Date of Birth</label>
                                 
                             </div>
@@ -47,7 +47,7 @@
 
                         <div class="col-md-3 mb-4">
                             <div class="form-check ">
-                                <input class="form-check-input font-size-16" checked type="checkbox" id="checkAll" name="">
+                                <input class="form-check-input font-size-16" checked type="checkbox" id="checkAll" name="users[]" value="gender">
                                 <label class="font-size-8" for="checkAll">Gender</label>
                                 
                             </div>
@@ -69,15 +69,6 @@
 <script src="{{ URL::asset('assets/libs/select2/select2.min.js') }}"></script>
 <script src="{{ URL::asset('assets/js/pages/ecommerce-select2.init.js') }}"></script>
 <script src="{{ URL::asset('/assets/js/app.min.js') }}"></script>
-<script>
-    // $('#role').on('change', function() {
-    //         var role_id = this.value;
-    //         var current_url ="{{asset('permissions')}}";
-    //         var url = current_url + "?role_id=" + role_id;
-    //         window.location.href = url;
-    //         console.log(current_url);
-    //     });
-</script>
 <script>
     $('#checkAll').click(function(e) {
         $(this).closest('div').find('input:checkbox').prop('checked', this.checked);
