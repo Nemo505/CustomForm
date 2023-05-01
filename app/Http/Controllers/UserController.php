@@ -41,11 +41,11 @@ class UserController extends Controller
     {
         $user = User::findOrFail($request->id);
         $validator = Validator::make($request->all(), [
-            'email' => 'required|string|email|unique:users',
+            'email' => 'required|string|email',
         ]);
 
         if ($validator->fails()) {
-            return redirect()->route('users')->with(['error' => 'The email is already taken']);
+            return redirect()->route('users')->with(['error' =>  $validator->errors()->all()]);
         }
         if ($user) {
             $user->update([
