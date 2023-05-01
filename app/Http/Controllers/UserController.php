@@ -29,17 +29,29 @@ class UserController extends Controller
                 'gender' => $gender ? 'pending' : null,
             ]);
 
-            return view('users.form', $user);
+            return view('users.form', ['user' => $user]);
 
         }else{
 
-            return redirect()->route('users')->with(['error' => 'Admin  successfully created']);
+            return redirect()->route('users')->with(['error' => 'Please Choose one to submit']);
         }
 
     }
 
-    public function storeForm(  )
+    public function storeForm( Request $request )
     {
-        # code...
+        $user = User::findOrFail($request->id);
+       
+        if ($user) {
+            $user->update([
+                'name' => $request->name ?? null,
+                'phone' => $request->phone ?? null,
+                'date_of_birth' =>   date("Y-m-d", strtotime($request->dob)) ?? null,
+                'gender' => $request->gender ?? null,
+            ]);
+            return redirect()->route('users')->with(['success' => 'Form submitted successfully']);
+        }else{
+            return redirect()->route('users')->with(['error' => 'User Data not found']);
+        }
     }
 }

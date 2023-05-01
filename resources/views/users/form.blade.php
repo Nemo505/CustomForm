@@ -13,33 +13,42 @@
                     <h3>Form Submittion</h3>
                 </div>
 
-                <form action="{{ route('submitting-data') }}" method="post" >
+                <form action="{{ route('complete-data') }}" method="post" >
                     @csrf
                     <div class="col-12 px-auto">
+                        <input type="hidden" value={{$user->id}} name="id"/>
+                        @if ($user->name == 'pending')                            
+                            <label class="control-label">Name</label>
+                            <div class="mb-3">
+                                <input type="text" class="form-control" name="name" value="" id="validationCustom01"  required>
+                            </div>
+                        @endif
 
-                        <label class="control-label">Name</label>
-                        <div class="mb-3">
-                            <input type="text" class="form-control" name="name" value="" id="validationCustom01"  required>
-                        </div>
+                        @if ($user->phone == 'pending')     
+                            <label class="control-label">Phone</label>
+                            <div class="mb-3">
+                                <input type="phone" class="form-control" name="phone" value="" id="validationCustom01"  required>
+                            </div>
+                        @endif
 
-                        <label class="control-label">Phone</label>
-                        <div class="mb-3">
-                            <input type="text" class="form-control" name="name" value="" id="validationCustom01"  required>
-                        </div>
+                        @if ($user->date_of_birth == '1111-11-11')  
+                            <label class="control-label">Date of Birth</label>
+                            <div class="mb-3">
+                                <input type="date" class="form-control" name="dob" value="" id="validationCustom01"  required>
+                            </div>
+                        @endif
 
-                        <label class="control-label">Date of Birth</label>
-                        <div class="mb-3">
-                            <input type="date" class="form-control" name="name" value="" id="validationCustom01"  required>
-                        </div>
+                        @if ($user->gender == 'pending')    
 
-                        <label class="control-label">Gender</label>
-                        <div class="mb-3">
-                            <select class="form-control select2" name="id" id="role">
-                                <option disabled selected>Select Gender</option>
-                                <option value="male">Male</option>
-                                <option value="female">Female</option>
-                            </select>
-                        </div>
+                            <label class="control-label">Gender</label>
+                            <div class="mb-3">
+                                <select class="form-control select2" name="gender" id="role" required>
+                                    <option disabled selected>Select Gender</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                </select>
+                            </div>
+                        @endif
 
                     </div>
                     <div class="d-flex flex-wrap gap-2 pt-3">

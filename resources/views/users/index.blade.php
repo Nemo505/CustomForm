@@ -15,7 +15,7 @@
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque soluta, perspiciatis consequuntur voluptatem quaerat quasi. Omnis asperiores und</p>
                 </div>
 
-                <form action="{{ route('pending-data') }}" method="post" >
+                <form action="{{ route('submitting-data') }}" method="post" >
                     @csrf
 
                     <input class="form-check-input font-size-16" type="checkbox" id="checkAll" name="">
